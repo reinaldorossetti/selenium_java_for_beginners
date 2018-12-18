@@ -5,12 +5,30 @@ import org.junit.runner.RunWith;
 import cucumber.api.junit.Cucumber;
 import cucumber.api.CucumberOptions;
 import br.com.selenium.for_beginners.enums.Browsers;
+import org.junit.runner.RunWith;
+import com.github.mkolisnyk.cucumber.runner.ExtendedCucumber;
+import com.github.mkolisnyk.cucumber.runner.ExtendedCucumberOptions;
 
-@RunWith(Cucumber.class)
-@CucumberOptions(features="src/resources/",
-plugin= {"io.qameta.allure.cucumberjvm.AllureCucumberJvm"},
-glue = "br/com/selenium/for_beginners/test/stepsDefinitions",
-tags= {"~@notImplemented"})
+@RunWith(ExtendedCucumber.class)
+@ExtendedCucumberOptions(jsonReport = "target/cucumber.json",
+        retryCount = 3,
+        detailedReport = true,
+        detailedAggregatedReport = false,
+        overviewReport = true,
+        //coverageReport = true,
+        jsonUsageReport = "target/cucumber-usage.json",
+        usageReport = true,
+        toPDF = true,
+        excludeCoverageTags = {"@flaky" },
+        includeCoverageTags = {"@passed" },
+        outputFolder = "target")
+@CucumberOptions(plugin = { "html:target/cucumber-html-report",
+        "json:target/cucumber.json", "pretty:target/cucumber-pretty.txt",
+        "usage:target/cucumber-usage.json", "junit:target/cucumber-results.xml" },
+        features = { "src/resources/" },
+        glue = { "br/com/selenium/for_beginners/test/stepsDefinitions" },
+        tags = {"~@notImplemented"})
+
 
 public class CucumberRunnerTest {
 
