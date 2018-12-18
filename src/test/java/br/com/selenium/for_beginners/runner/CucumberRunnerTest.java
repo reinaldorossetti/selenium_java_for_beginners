@@ -11,7 +11,7 @@ import com.github.mkolisnyk.cucumber.runner.ExtendedCucumberOptions;
 
 @RunWith(ExtendedCucumber.class)
 @ExtendedCucumberOptions(jsonReport = "target/cucumber.json",
-        retryCount = 3,
+        retryCount = 2,
         detailedReport = true,
         detailedAggregatedReport = false,
         overviewReport = true,
