@@ -1,6 +1,6 @@
 # SELENIUM-JAVA-FOR-BEGINNERS
 
-Fiz um fork do projeto do Lucas somente para testar o Retry do Cumcumber no Java, no entanto o mesmo só tem para Ruby, a solução feita simplesmente Extend a biblioteca para retestar o teste falho, mas no entanto o mesmo repete o cenário no report do Cucumber.
+Fiz um fork do projeto do Lucas somente para testar o Retry do Cucumber no Java, no entanto o mesmo só tem para Ruby, a solução feita simplesmente Extend a biblioteca para retestar o teste falho, mas no entanto o mesmo repete o cenário no report do Cucumber.
 
 > Repository with examples of automation using selenium + java
 
