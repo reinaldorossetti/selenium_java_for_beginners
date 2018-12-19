@@ -1,5 +1,7 @@
 # SELENIUM-JAVA-FOR-BEGINNERS
 
+Fiz um fork do projeto do Lucas somente para testar o Retry do Cumcumber no Java, no entanto o mesmo só tem para Ruby, a solução feita simplesmente Extend a biblioteca para retestar o teste falho, mas no entanto o mesmo repete o cenário no report do Cucumber.
+
 > Repository with examples of automation using selenium + java
 
 > Selenium is a portable software-testing framework for web applications. Selenium provides a playback tool for authoring tests without the need to learn a test scripting language.
