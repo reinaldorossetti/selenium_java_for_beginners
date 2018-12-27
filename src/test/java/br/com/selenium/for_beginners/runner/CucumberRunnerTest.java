@@ -1,13 +1,14 @@
 package br.com.selenium.for_beginners.runner;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.runner.RunWith;
-import cucumber.api.junit.Cucumber;
-import cucumber.api.CucumberOptions;
-import br.com.selenium.for_beginners.enums.Browsers;
 import org.junit.runner.RunWith;
 import com.github.mkolisnyk.cucumber.runner.ExtendedCucumber;
 import com.github.mkolisnyk.cucumber.runner.ExtendedCucumberOptions;
+import br.com.selenium.for_beginners.enums.Browsers;
+import cucumber.api.CucumberOptions;
+import br.com.selenium.for_beginners.utils.ErrorLog;
+
 
 @RunWith(ExtendedCucumber.class)
 @ExtendedCucumberOptions(jsonReport = "target/cucumber.json",
@@ -32,8 +33,23 @@ import com.github.mkolisnyk.cucumber.runner.ExtendedCucumberOptions;
 
 public class CucumberRunnerTest {
 
+    ErrorLog errorlog = new ErrorLog();
+	
 	@BeforeClass
 	public static void tearUp() {
+
+		try {
+		System.out.println("Instancia o Browser Antes dos Testes");
 		Browsers.setWebDriver();
+		} catch (Exception Ex){
+			System.out.println(Ex);
+			ErrorLog errorlog = new ErrorLog();
+			errorlog.log(Ex);
+		}
 	}
+	
+	@AfterClass
+    public static void teardown() throws InterruptedException {
+        System.out.println("Roda após os testes!");
+    }
 }
