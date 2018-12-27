@@ -54,9 +54,9 @@ public enum Browsers {
 			case "webdriver.gecko.driver":
 				return new FirefoxDriver();
 			case "webdriver.chrome.driver":
-	            ChromeOptions options = new ChromeOptions();
-	            options.addArguments("--start-fullscreen", "--disable-gpu");
-	            return new ChromeDriver(options);
+			       ChromeOptions options = new ChromeOptions();
+			       options.addArguments("--start-fullscreen", "--disable-gpu");
+			       return new ChromeDriver(options);
 			case "webdriver.edge.driver":
 				return new EdgeDriver();
 			default:
