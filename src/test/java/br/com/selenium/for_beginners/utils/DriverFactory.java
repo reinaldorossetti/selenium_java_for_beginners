@@ -9,13 +9,6 @@ import br.com.selenium.for_beginners.enums.OperationSystems;
 public class DriverFactory {
 
     public static WebDriver createDriver(String mvnParameter){
-        if (mvnParameter == null){
-            System.setProperty(Browsers.CHROME_MAC.getBrowserType(),
-            		OperationSystems.MAC_OS_X.getDriversPath().concat(Browsers.CHROME_MAC.getExecutable()));
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--start-fullscreen", "--disable-gpu");
-            return new ChromeDriver(options);
-        }
 
         try {
             String soName = getSoName();
