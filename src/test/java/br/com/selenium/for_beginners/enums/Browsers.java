@@ -1,14 +1,16 @@
 package br.com.selenium.for_beginners.enums;
 
-import java.net.URL;
-import org.openqa.selenium.WebDriver;
 import java.net.MalformedURLException;
-import org.openqa.selenium.edge.EdgeDriver;
+import java.net.URL;
+
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
 import br.com.selenium.for_beginners.utils.DriverFactory;
 import br.com.selenium.for_beginners.utils.HandleProperties;
 
@@ -44,33 +46,33 @@ public enum Browsers {
 	}
 
 	public WebDriver createDriverInstance() {
-		switch (browserType) {
-		case "webdriver.ie.driver":
-			return new InternetExplorerDriver();
-		case "webdriver.gecko.driver":
-			return new FirefoxDriver();
-		case "webdriver.chrome.driver":
-			return new ChromeDriver();
-		case "webdriver.edge.driver":
-			return new EdgeDriver();
-		default:
-			return null;
+		try {
+			System.out.println(browserType);
+			switch (browserType) {
+			case "webdriver.ie.driver":
+				return new InternetExplorerDriver();
+			case "webdriver.gecko.driver":
+				return new FirefoxDriver();
+			case "webdriver.chrome.driver":
+	            ChromeOptions options = new ChromeOptions();
+	            options.addArguments("--start-fullscreen", "--disable-gpu");
+	            return new ChromeDriver(options);
+			case "webdriver.edge.driver":
+				return new EdgeDriver();
+			default:
+				return null;
+		}} catch(Exception ex) {
+			System.out.println(ex);
 		}
+		return null;
 	}
 
 	public static void setWebDriver() {
-		if (Boolean.parseBoolean(System.getProperty("url_concrete"))) {
-			try {
-				String urlConcrete = System.getProperty("urlConcrete") != null ? System.getProperty("urlConcrete")
-						: HandleProperties.getValue("url_concrete");
-				webDriver = new RemoteWebDriver(new URL(urlConcrete), new ChromeOptions());
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
-		} else {
-			webDriver = DriverFactory.createDriver(System.getProperty("browser"));
-		}
-	}
+		
+		System.out.println(System.getProperty("browser"));
+		webDriver = DriverFactory.createDriver(System.getProperty("browser"));
+
+  	}
 
 	public static void quitDriver() {
 		webDriver.quit();
