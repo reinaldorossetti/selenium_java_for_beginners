@@ -13,10 +13,10 @@ public class Hooks {
 
     @After
     public void afterEachScenario(Scenario scenario) {
-		if (scenario.isFailed()) {
-			final byte[] screenshot = ((TakesScreenshot) Browsers.driver()).getScreenshotAs(OutputType.BYTES);
-			scenario.embed(screenshot, "image/png");
-			}
+	//if (scenario.isFailed()) {
+	final byte[] screenshot = ((TakesScreenshot) Browsers.driver()).getScreenshotAs(OutputType.BYTES);
+	scenario.embed(screenshot, "image/png");
+	//}
         AllureHelper.saveScreenshootOfScenario(scenario);
         Browsers.quitDriver();
     }
