@@ -8,10 +8,7 @@ import com.github.mkolisnyk.cucumber.runner.ExtendedCucumberOptions;
 import br.com.selenium.for_beginners.enums.Browsers;
 import cucumber.api.CucumberOptions;
 import br.com.selenium.for_beginners.utils.ErrorLog;
-import cucumber.api.Scenario;
-import cucumber.api.java.After;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+
 
 @RunWith(ExtendedCucumber.class)
 @ExtendedCucumberOptions(jsonReport = "target/cucumber.json",
@@ -50,22 +47,6 @@ public class CucumberRunnerTest {
 			errorlog.log(Ex);
 		}
 	}
-	
-    @After
-    public void embedScreenshot(Scenario scenario) {
-      try {
-        if (!scenario.isFailed()) {
-        	if (scenario.isFailed()) {
-                final byte[] screenshot = ((TakesScreenshot) Browsers.driver()).getScreenshotAs(OutputType.BYTES);
-                scenario.embed(screenshot, "image/png");
-	            }
-	}
-    }finally {
-	
-		/// close the browser.
-    	//Browsers.driver().close();
-  	}
-    }
 	
 	@AfterClass
     public static void teardown() throws InterruptedException {
