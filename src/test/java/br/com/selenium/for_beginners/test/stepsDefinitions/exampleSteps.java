@@ -17,7 +17,7 @@ public class exampleSteps {
 	}
 
 	// -----------------------------------DADO----------------------------------------------------------
-	@Given("^Im on the page$")
+	@Given("^I am on the page$")
 	public void im_on_the_page() {
 		concrete.visit("Concrete");
 	}
