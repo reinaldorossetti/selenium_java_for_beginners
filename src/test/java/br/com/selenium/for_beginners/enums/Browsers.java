@@ -73,6 +73,10 @@ public enum Browsers {
 		webDriver = DriverFactory.createDriver(System.getProperty("browser"));
 
   	}
+	
+	public static WebDriver driver() {
+	  return webDriver;
+        }
 
 	public static void quitDriver() {
 		webDriver.quit();
