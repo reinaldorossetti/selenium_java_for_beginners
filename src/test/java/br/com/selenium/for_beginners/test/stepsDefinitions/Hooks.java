@@ -14,7 +14,7 @@ public class Hooks {
     public void afterEachScenario(Scenario scenario) {
 	//if (scenario.isFailed()) {
 	final byte[] screenshot = ((TakesScreenshot) Browsers.driver()).getScreenshotAs(OutputType.BYTES);
-	scenario.embed(screenshot, "image/png");
+	scenario.embed(screenshot, "image/png", "click here!");
 	//}
         AllureHelper.saveScreenshootOfScenario(scenario);
         Browsers.quitDriver();
