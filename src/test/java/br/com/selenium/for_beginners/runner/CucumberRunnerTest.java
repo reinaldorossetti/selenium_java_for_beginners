@@ -8,7 +8,8 @@ import com.github.mkolisnyk.cucumber.runner.ExtendedCucumberOptions;
 import br.com.selenium.for_beginners.enums.Browsers;
 import cucumber.api.CucumberOptions;
 import br.com.selenium.for_beginners.utils.ErrorLog;
-
+import cucumber.api.Scenario;
+import cucumber.api.java.After;
 
 @RunWith(ExtendedCucumber.class)
 @ExtendedCucumberOptions(jsonReport = "target/cucumber.json",
@@ -48,8 +49,28 @@ public class CucumberRunnerTest {
 		}
 	}
 	
+    @After
+    public void embedScreenshot(Scenario scenario) {
+      try {
+        if (!scenario.isFailed()) {
+          // Take a screenshot only in the failure case
+          return;
+        }
+  
+        String webDriverType = System.getProperty("WebDriverType");
+        if (!webDriverType.equals("HtmlUnit")) {
+          // HtmlUnit does not support screenshots
+          byte[] screenshot = Browsers.takeScreen();;
+          scenario.embed(screenshot, "image/png");
+        }
+      } catch (WebDriverException somePlatformsDontSupportScreenshots) {
+        scenario.write(somePlatformsDontSupportScreenshots.getMessage());
+      }
+    }
+	
 	@AfterClass
     public static void teardown() throws InterruptedException {
+        Browsers.quitDriver();
         System.out.println("Roda após os testes!");
     }
 }
